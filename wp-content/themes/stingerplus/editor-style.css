@@ -1,0 +1,673 @@
+* {
+	font-family: PT Sans Caption,Josefin Sans,"メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", Hiragino Kaku Gothic Pro, "ＭＳ Ｐゴシック", sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+
+body.mceContentBody {
+	background-color: #fff;
+}
+
+/*自動アイコン目印*/
+.hatenamark,.checkmark,.attentionmark,.memomark {
+	background-color: rgba(135,206,250,0.5);
+}
+
+/* clearfix */
+.clearfix {
+	zoom: 1;
+}
+
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.clear {
+	clear: both;
+}
+
+.center {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+/* リンクの色 */
+a {
+	color: #4682b4;
+}
+
+/* リンクにマウスオーバーした時の色 */
+a:hover {
+	color: #b22222;
+}
+
+img, video, object {
+	max-width: 100%;
+	height: auto;
+	border: none;
+	vertical-align: bottom;
+	display: block;
+	box-sizing:border-box;
+}
+
+.inline-img img {
+	display: inline!important;
+}
+
+iframe {
+	max-width: 100%;
+}
+
+code {
+	padding:2px;
+	background:#f3f3f3;
+	margin:2px;
+	border-radius:2px;
+}
+
+/* iframeのレスポンシブ */
+.youtube-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+}
+
+.youtube-container iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/*レスポンシブ用PC左右コンテンツ*/
+.responbox, .responbox30, .responbox50, .responbox60, .responbox70 {
+	padding:10px;
+	background:#f3f3f3;
+	margin-bottom:20px;
+}
+
+.responbox .lbox img {
+	width:100%!important;
+	box-sizing:border-box;
+	margin-bottom:10px;
+}
+
+/*--------------------------------
+各フォント設定
+---------------------------------*/
+/* 基本の文字 */
+p {
+	font-size: 16px;
+	line-height: 25px;
+	margin-bottom: 20px;
+}
+
+/* 中見出し */
+
+h2 {
+	position: relative;
+	background: #f3f3f3;
+	color: #1a1a1a;
+	font-size: 20px;
+	line-height: 27px;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+}
+
+h2:after {
+	content: '';
+	position: absolute;
+	border-top: 10px solid #f3f3f3;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+	bottom: -10px;
+	left: 30px;
+	border-radius: 2px;
+}
+
+h2:before {
+	content: '';
+	position: absolute;
+	border-top: 10px solid #f3f3f3;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+	bottom: -10px;
+	left: 30px;
+}
+
+/*小見出し*/
+
+.post h3 {
+	font-size: 18px;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	padding-top: 15px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	color: #1a1a1a;
+	line-height: 27px;
+	background-repeat: no-repeat;
+	background-position: left center;
+	margin-left: 0px;
+	border-bottom: 1px #999999 dotted;
+}
+
+h3 a {
+	color: #333;
+	text-decoration: none;
+}
+
+.post h4 {
+	padding: 10px 15px;
+	margin-bottom: 20px;
+	background-color: #f3f3f3;
+	line-height: 24px;
+}
+
+.post h5 {
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+
+/* 引用 */
+.post blockquote {
+	background-color: #f3f3f3;
+	background-image: url(images/quote.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding-top: 50px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	margin-top: 20px;
+	margin-right: 0px;
+	margin-bottom: 20px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #CCC;
+}
+
+/* オリジナルスタイルsmartphone */
+
+.huto {
+	font-weight:bold;
+}
+
+.hutoaka {
+	font-weight:bold;
+	color:#ff0000;
+}
+
+.oomozi {
+	font-size: 18pt;line-height: 35px;
+	font-weight:bold;
+}
+
+
+.yellowbox {
+	padding:20px;
+	border:solid 1px #fffacd;
+	background-color:#ffffe0;
+	margin-bottom:20px;
+	font-size: 16px;
+	line-height: 26px;
+}
+
+.redbox {
+	padding:20px;
+	border:solid 1px #ef5350;
+	background-color:#ef9a9a;
+	margin-bottom:20px;
+	font-size: 16px;
+	line-height: 26px;
+}
+
+.graybox {
+	padding:20px;
+	border:solid 1px #ccc;
+	background-color:#f3f3f3;
+	margin-bottom:20px;
+	font-size: 16px;
+	line-height: 26px;
+}
+
+.post .yellowbox p:last-child,
+.post .yellowbox ol:last-child,
+.post .yellowbox ul:last-child {
+	margin-bottom:0;
+	paddding-bottom:0;
+}
+
+.post .graybox p:last-child,
+.post .graybox ol:last-child,
+.post .graybox ul:last-child {
+	margin-bottom:0;
+	paddding-bottom:0;
+}
+
+.post .redbox p:last-child,
+.post .redbox ol:last-child,
+.post .redbox ul:last-child {
+	margin-bottom:0;
+	paddding-bottom:0;
+}
+
+
+.h2fuu {
+	position: relative;
+	background: #f3f3f3;
+	color: #1a1a1a;
+	font-size: 20px;
+	line-height: 27px;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	font-weight:bold;
+}
+
+.h2fuu:after {
+	content: '';
+	position: absolute;
+	border-top: 10px solid #f3f3f3;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+	bottom: -10px;
+	left: 30px;
+	border-radius: 2px;
+}
+
+.h2fuu:before {
+	content: '';
+	position: absolute;
+	border-top: 10px solid #f3f3f3;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+	bottom: -10px;
+	left: 30px;
+}
+
+.inyoumodoki {
+	background-color: #f3f3f3;
+	background-image: url(images/quote.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding-top: 50px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	margin-top: 20px;
+	margin-right: 0px;
+	margin-bottom: 20px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #CCC;
+}
+
+.sankou {
+	font-size:11px;
+	background-color:#F57C00;
+	color:#fff;
+	padding:2px 3px;
+	margin-right:5px;
+}
+
+/*--------------------------------
+エディタ用
+---------------------------------*/
+/*テーブル */
+.post table {
+	border-top: 1px #999 solid;
+	border-right: 1px #999 solid;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+table tr td {
+	padding: 5px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-bottom-color: #999;
+	border-left-color: #999;
+	font-size: 13px;
+	line-height: 18px;
+}
+
+table th {
+	padding: 5px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-bottom-color: #999;
+	border-left-color: #999;
+	font-size: 13px;
+	line-height: 18px;
+}
+
+.post table tr td {
+	font-size: 13px;
+	line-height: 18px;
+}
+
+.post table tr:nth-child(even) {
+	background-color: rgba(220,220,220,0.2);
+}
+
+#main .post table {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-top-color: #999;
+	border-right-color: #999;
+	color: #333;
+}
+
+/*テーブル（装飾なし） */
+.post .notab table {
+	border:none;
+	width: initial; /* 初期状態にリセット */
+	max-width: initial; /* 初期状態にリセット */
+}
+
+.notab table tr td {
+	border:none;
+	text-align: left;
+	vertical-align: top;
+}
+
+.notab table th {
+	border:none;
+}
+
+.post .notab table tr:nth-child(even) {
+	background-color: transparent;
+}
+
+
+/*スクロール*/
+.scroll-box {
+	overflow-x: auto;
+	margin-bottom:10px;
+}
+.scroll-box::-webkit-scrollbar {
+      height: 5px;
+}
+
+.scroll-box::-webkit-scrollbar-track {
+      border-radius: 5px;
+      background: #f3f3f3;
+}
+.scroll-box::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: #ccc;
+}
+
+/*画像 */
+img.alignright {
+	display: block;
+	margin: 0 0 0 auto;
+}
+
+img.alignleft {
+	display: block;
+	margin: 0 auto 0 0;
+}
+
+img.aligncenter {
+	display: block;
+	margin: 0 auto;
+}
+
+img.float-left {
+	float: left;
+}
+
+img.float-right {
+	float: right;
+}
+
+.wp-caption {
+	text-align: center;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.ie8 img {
+	width: auto;
+}
+
+/*リスト */
+.post ul {
+	list-style-type: disc;
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	padding-left: 30px;
+	margin-bottom: 20px;
+}
+
+.post ul li {
+	font-size: 17px;
+	line-height: 27px;
+}
+
+.post ol {
+	list-style-type: decimal;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+	padding-left: 30px;
+	margin-bottom: 20px;
+}
+
+.post ol li {
+	font-size: 17px;
+	line-height: 27px;
+}
+/*media Queries タブレットサイズ
+----------------------------------------------------*/
+@media only screen and (min-width: 414px) {
+/*レスポンシブ用PC左右コンテンツ*/
+
+	.responbox .lbox {
+		padding:10px;
+		background:#FFF59D;
+		float:left;
+		padding-right:15px;
+		width:40%;
+		box-sizing:border-box;
+	}
+
+	.responbox .rbox {
+		padding:10px;
+		background:#B2EBF2;
+		float:left;
+		box-sizing:border-box;
+		width:60%;
+	}
+
+	/*30%*/
+
+	.responbox30 .lbox {
+		padding:10px;
+		background:#FFF59D;
+		float:left;
+		padding-right:15px;
+		width:30%;
+		box-sizing:border-box;
+	}
+
+	.responbox30 .rbox {
+		padding:10px;
+		background:#B2EBF2;
+		float:left;
+		box-sizing:border-box;
+		width:70%;
+	}
+
+	/*50%*/
+
+	.responbox50 .lbox {
+		padding:10px;
+		background:#FFF59D;
+		float:left;
+		padding-right:15px;
+		width:50%;
+		box-sizing:border-box;
+	}
+
+	.responbox50 .rbox {
+		padding:10px;
+		background:#B2EBF2;
+		float:left;
+		box-sizing:border-box;
+		width:50%;
+	}
+
+	/*60%*/
+
+	.responbox60 .lbox {
+		padding:10px;
+		background:#FFF59D;
+		float:left;
+		padding-right:15px;
+		width:60%;
+		box-sizing:border-box;
+	}
+
+	.responbox60 .rbox {
+		padding:10px;
+		background:#B2EBF2;
+		float:left;
+		box-sizing:border-box;
+		width:40%;
+	}
+
+	/*70%*/
+
+	.responbox70 .lbox {
+		padding:10px;
+		background:#FFF59D;
+		float:left;
+		padding-right:15px;
+		width:30%;
+		box-sizing:border-box;
+	}
+
+	.responbox70 .rbox {
+		padding:10px;
+		background:#B2EBF2;
+		float:right;
+		box-sizing:border-box;
+		width:70%;
+	}
+
+}
+/*media Queries PCサイズ
+----------------------------------------------------*/
+@media only screen and (min-width: 781px) {
+
+	/*--------------------------------
+	各フォント設定
+	---------------------------------*/
+	p {
+		font-size: 14px;
+		line-height: 23px;
+		margin-bottom: 20px;
+	}
+
+	/*中見出し*/
+	h2 {
+		font-size: 20px;
+		line-height: 30px;
+	}
+
+	h2:after {
+		bottom: -10px;
+		left: 50px;
+	}
+
+	h2:before {
+		bottom: -10px;
+		left: 50px;
+	}
+
+	/*小見出し*/
+	.post h3 {
+		font-size: 18px;
+		line-height: 25px;
+	}
+
+	/*リスト */
+	.post ul li {
+		font-size: 14px;
+		line-height: 27px;
+	}
+
+	.post ol li {
+		font-size: 14px;
+		line-height: 27px;
+	}
+
+	/* オリジナルスタイルPC */
+
+	.oomozi {
+		font-size: 18pt;line-height: 35px;
+	}
+
+
+	.yellowbox {
+		font-size: 14px;
+		line-height: 27px;
+		margin-bottom: 20px;
+	}
+
+
+	.redbox {
+		font-size: 14px;
+		line-height: 27px;
+		margin-bottom: 20px;
+	}
+
+	.graybox {
+		font-size: 14px;
+		line-height: 27px;
+		margin-bottom: 20px;
+	}
+
+	.h2fuu {
+		font-size: 20px;
+		line-height: 30px;
+	}
+
+	.h2fuu:after {
+		bottom: -10px;
+		left: 50px;
+	}
+
+	.h2fuu:before {
+		bottom: -10px;
+		left: 50px;
+	}
+
+	/*-- ここまで --*/
+}
