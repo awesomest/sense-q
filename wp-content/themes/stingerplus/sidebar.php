@@ -13,7 +13,6 @@
 		if ( ( is_home() && $stdata11 === 'yes' ) || ( $column1 === 'yes' && !is_home() && !is_archive() ) ) {
 		} elseif ( ( is_home() && $stdata11 === 'lp' ) || ( $column1 === 'lp' && !is_home() && !is_archive() ) ) {
 		} else {
-	
 	?>
 <div id="side">
 	<aside>
@@ -40,7 +39,10 @@
 			<?php if ( isset($GLOBALS['stplus']) && $GLOBALS['stplus'] === 'yes' ) {
 				get_template_part( 'st-rank-side' ); //ランキング
 			} ?>
+		</div>
 
+		<div id="external_news">
+			<?php include( 'external-news.php' ); ?>
 		</div>
 	</aside>
 </div>
