@@ -3,6 +3,7 @@ require( '../../../wp-config.php' );
 include( 'mail.php' );
 
 define( "DEVELOPER_ACCESS_TOKEN", "A1aUarGBZ3da3E-YRGrb23qnkFABgbCdvMFNP2SqQSMrAr_FNvYL-tWkCqAc7P6fzhGw59CEoGKYMNQGUsR2zwdzyQbo14ucqts-uEBzicjRNFAgQhjhDkX3yRvqA_eFjn6E_N-sdcx9e4fYjgONrYU4OFEQ4jtbWdWDDDwSftdfEJWsTNFvxqu1FiVqfWp_XW3N0bpj2tFFq7mCpNvbQWhPDIcMnQ:feedlydev" );
+define( "TEST_DEVELOPER_ACCESS_TOKEN", "A1FuDrE0fHQguNIxldrosVYpEHGI1Dqt9FM7TKVC9uSNQwqMVMTmGd32nwNA3YTyRdoffo_9oKmjXfycyQ5tCQf8QglmlDj5uuvyDeSq9sdpjkbFECROGgTepA4--TO8YsGlL_HK8KU5zCefcvBIdnNkJJVGG3pLBeHqsNpt0RD2Yl7GvqcPAqJgSCwCyi5mHWozpSHqj0i_C3tzoWzqkOYqqIw8Epo:feedlydev" );
 
 define( 'SITES_TABLE_NAME',     'external_sites' );
 define( 'ARTICLES_TABLE_NAME',  'external_articles' );
@@ -73,24 +74,17 @@ function markFeedAsRead( $feed_ids ) {
 }
 
 function insertArticles( $article ) {
+  $is_unread = $article['unread'];
+  if ( !$is_unread ) {
+    return;
+  }
+
   global $wpdb;
   print_r( $article['title'] . "\n" );
   // convert the time in ms to S
-  $published_unix = ( isset( $article['published'] ) ) ? $article['published'] / 1000 : 0;
-  $crawled_unix   = ( isset( $article['crawled'] ) )   ? $article['crawled'] / 1000   : 0;
-  $article_url    = ( isset( $article['alternate'] ) ) ? $article['alternate'][0]['href'] : NULL;
+  $published_unix  = ( isset( $article['published'] ) ) ? $article['published'] / 1000 : 0;
+  $crawled_unix    = ( isset( $article['crawled'] ) )   ? $article['crawled'] / 1000   : 0;
   $article_content = ( isset( $article['alternate'] ) ) ? $article['alternate'][0]['href'] : NULL;
-
-  // $is_exist=NULL if not exists
-  $is_exist = $wpdb->get_var(
-    $wpdb->prepare("
-    SELECT COUNT( * )
-    FROM " . ARTICLES_TABLE_NAME . "
-    WHERE article_content = %s", $article_content ) );
-  if ( $is_exist ) {
-    print_r( "[Already inserted]\n" );
-    return;
-  }
 
   $set_arr = array(
     'published_gtm'    => date( 'Y-m-d H:i:s', $published_unix ),
@@ -98,7 +92,7 @@ function insertArticles( $article ) {
     'article_content'  => $article_content,
     'article_author'   => $article['author'],
     'article_title'    => $article['title'],
-    'article_url'      => $article_url,
+    'article_url'      => ( isset( $article['alternate'] ) ) ? $article['alternate'][0]['href'] : NULL,
     'article_category' => ( isset( $article['categories'] ) ) ? $article['categories'][0]['label'] : NULL,
     'article_summary'  => ( isset( $article['summary'] ) ) ? $article['summary']['content'] : NULL,
   );
@@ -141,14 +135,15 @@ function gatherUnreadContents() {
     }
 
     // maybe markers api will not work if more than 200 articles are requested
+    $stream_count = $stream['count'];
     $article_total += $stream_count;
-    if ( $article_total >= 200 ) {
+    if ( $article_total >= 200 && $feed_ids ) {
       $article_total -= $stream_count;
-      return false;
+      break;
     }
 
     $stream_id = $stream['id'];
-    print_r( '$stream: ' . $stream['id'] . "\n" );
+    print_r( 'stream: ' . $stream['id'] . "\n" );
 
     $feed_ids[] = $stream_id;
     $unread_articles = getContents( $stream_id );
