@@ -9,14 +9,10 @@ define( 'SITES_TABLE_NAME',     'external_sites' );
 define( 'ARTICLES_TABLE_NAME',  'external_articles' );
 
 global $ch, $wpdb;
-$ch = curl_init();
-
-function init() {
-  setCurlOptions();
-}
 
 function setCurlOptions() {
   global $ch;
+  $ch = curl_init();
   curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
   curl_setopt( $ch, CURLOPT_ENCODING, "" );
   curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
@@ -60,11 +56,26 @@ function markFeedAsRead( $feed_ids ) {
   $data = [
     "feedIds" => $feed_ids,
     "action"  => "markAsRead",
-    //"action"  => "undoMarkAsRead",
     "type"    => "feeds",
     ];
   $url = "https://cloud.feedly.com/v3/markers";
-  curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $data ));
+  curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $data ) );
+  curl_setopt( $ch, CURLOPT_URL, $url );
+  curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "POST" );
+
+  $response = curl_exec( $ch );
+  $response = json_decode( $response, true );
+  return $response;
+}
+
+function getFeedMetas( $feed_ids ) {
+  if ( !$feed_ids ) {
+    return array();
+  }
+
+  global $ch;
+  $url = "https://cloud.feedly.com/v3/feeds/.mget";
+  curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $feed_ids ));
   curl_setopt( $ch, CURLOPT_URL, $url );
   curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "POST" );
 
@@ -116,8 +127,32 @@ function isFeed( $stream ) {
   return true;
 }
 
+function getAllFeedMetas() {
+  setCurlOptions();
+
+  $feed_ids = array();
+  $unread_counts = getUnreadFeeds();
+  if ( $unread_counts['errorCode'] || !$unread_counts['unreadcounts'] ) {
+    $subject = print_r( 'Error about $unread_counts', true );
+    $message = print_r( $unread_counts, true );
+    sendMail( $message, $subject );
+    return;
+  }
+
+  //var_dump( $unread_counts );
+  foreach ( $unread_counts['unreadcounts'] as $stream ) {
+    if ( !isFeed( $stream ) ) {
+      continue;
+    }
+
+    $feed_ids[] = $stream['id'];
+  }
+  //var_dump( $feed_ids );
+  print_r( getFeedMetas( $feed_ids ) );
+}
+
 function gatherUnreadContents() {
-  init();
+  setCurlOptions();
 
   $feed_ids = array();
   $article_total = 0;
@@ -174,4 +209,4 @@ function gatherUnreadContents() {
 }
 
 gatherUnreadContents();
-
+//getAllFeedMetas();
